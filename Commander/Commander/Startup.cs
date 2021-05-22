@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Commander.Data;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace Commander
 {
@@ -29,7 +30,10 @@ namespace Commander
       services.AddDbContext<CommanderContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("CommanderConnection")));
 
-      services.AddControllers();
+      services.AddControllers().AddNewtonsoftJson(options =>
+      {
+        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+      });
 
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

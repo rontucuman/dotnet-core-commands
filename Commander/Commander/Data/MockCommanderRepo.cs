@@ -37,5 +37,10 @@ namespace Commander.Data
     {
       throw new NotImplementedException();
     }
+
+    public void DeleteCommand(Command command)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
