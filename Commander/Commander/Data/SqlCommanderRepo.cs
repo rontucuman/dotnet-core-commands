@@ -14,6 +14,11 @@ namespace Commander.Data
       _context = context ?? throw new ArgumentNullException(paramName: nameof(context));
     }
 
+    public bool SaveChanges()
+    {
+      return _context.SaveChanges() > 0;
+    }
+
     public IEnumerable<Command> GetAllCommands()
     {
       return _context.Commands.ToList();
@@ -22,6 +27,16 @@ namespace Commander.Data
     public Command GetCommandById(int id)
     {
       return _context.Commands.Find(id);
+    }
+
+    public void CreateCommand(Command command)
+    {
+      if (command == null)
+      {
+        throw new ArgumentNullException(paramName: nameof(command));
+      }
+
+      _context.Commands.Add(command);
     }
   }
 }
