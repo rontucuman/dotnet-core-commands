@@ -16,7 +16,6 @@ namespace Commander.Controllers
 
     public CommandsController(ICommanderRepo repo)
     {
-
       _repo = repo ?? throw new ArgumentNullException(paramName: nameof(repo));
     }
 
